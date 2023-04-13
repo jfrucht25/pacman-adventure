@@ -98,6 +98,8 @@ class GameCoordinator {
       this.soundButtonClick.bind(this),
     );
 
+    window.addEventListener('keydown', this.hitSpaceBar.bind(this));
+
     const head = document.getElementsByTagName('head')[0];
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -158,6 +160,12 @@ class GameCoordinator {
       this.init();
     }
     this.startGameplay(true);
+  }
+
+  hitSpaceBar(e) {
+    if (e.keyCode === 32 && !this.gameStartButton.disabled) {
+      this.startButtonClick();
+    }
   }
 
   /**
@@ -1171,9 +1179,7 @@ class GameCoordinator {
     this.eyeGhosts -= 1;
 
     if (this.eyeGhosts === 0) {
-      const sound = this.scaredGhosts.length > 0
-        ? 'power_up'
-        : this.determineSiren(this.remainingDots);
+      const sound = this.determineSiren(this.remainingDots);
       this.soundManager.setAmbience(sound);
     }
   }
