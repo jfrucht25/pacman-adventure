@@ -2528,9 +2528,6 @@ class GameCoordinator {
     } else if (e.keyCode === 81) {
       // Q
       this.soundButtonClick();
-    } else if (e.keyCode == 32 && !this.gameStartButton.disabled){
-      // Space
-      this.startButtonClick()
     } else if (this.movementKeys[e.keyCode]) {
       this.changeDirection(this.movementKeys[e.keyCode]);
     }
